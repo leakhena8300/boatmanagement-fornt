@@ -1,0 +1,9 @@
+#custom-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 15px; /* Override Bootstrap's margin-right */
+    margin-left: 95px; /* Override Bootstrap's margin-left */
+    margin-top: 40px; /* Add new margin-top */
+  }
+  
+ 
