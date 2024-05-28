@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BoatDataService from "../services/boat.service";
+import authService from '../services/auth.service';
 import { Link } from "react-router-dom";
 
 import '../style.css';
@@ -24,6 +25,11 @@ export default class BoatList extends Component {
   }
 
   componentDidMount() {
+    const token = authService.getToken();
+    if (!token) {
+      console.log("No token found, redirecting to login...");
+      window.location.href = '/login';
+    }
     this.retrieveBoats();
   }
 
@@ -178,7 +184,7 @@ export default class BoatList extends Component {
               </div>
               
               <Link
-                to={"/boats/" + currentBoat.id}
+                to={"/boat/" + currentBoat.id}
                 className="badge badge-warning"
               >
                 Edit

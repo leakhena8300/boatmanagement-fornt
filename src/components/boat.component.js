@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BoatDataService from "../services/boat.service";
+import authService from '../services/auth.service';
 import { withRouter } from '../common/with-router';
 
 class Boat extends Component {
@@ -23,6 +24,11 @@ class Boat extends Component {
   }
 
   componentDidMount() {
+    const token = authService.getToken();
+    if (!token) {
+      console.log("No token found, redirecting to login...");
+      window.location.href = '/login';
+    }
     this.getBoat(this.props.router.params.id);
   }
 
@@ -84,7 +90,7 @@ class Boat extends Component {
     BoatDataService.delete(this.state.currentBoat.id)
       .then(response => {
         console.log(response.data);
-        this.props.router.navigate('/boats');
+        this.props.router.navigate('/admin');
       })
       .catch(e => {
         console.log(e);

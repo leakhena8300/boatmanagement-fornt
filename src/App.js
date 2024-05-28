@@ -9,8 +9,8 @@ import Login from "./components/login.component";
 import Register from "./components/register.component";
 import Home from "./components/home.component";
 import Profile from "./components/profile.component";
-import BoardUser from "./components/board-user.component";
-import BoardModerator from "./components/board-moderator.component";
+import User from "./components/user.component";
+import Moderator from "./components/moderator.component";
 import BoatList from "./components/boats-list.component";
 import AddBoat from "./components/add-boat.component";
 import Boat from "./components/boat.component";
@@ -80,7 +80,7 @@ class App extends Component {
 
             {showAdminBoard && (
               <li className="nav-item">
-                <Link to={"/boats"} className="nav-link">
+                <Link to={"/admin"} className="nav-link">
                   Admin Board
                 </Link>
               </li>
@@ -132,11 +132,11 @@ class App extends Component {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/user" element={<BoardUser />} />
-            <Route path="/mod" element={<BoardModerator />} />
-            <Route path="/boats" element={<BoatList />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/mod" element={<Moderator />} />
+            <Route path="/admin" element={<BoatList />} />
             <Route path="/addboat" element={<AddBoat />} />
-            <Route path="/boats/:id" element={<Boat/>}/>
+            <Route path="/boat/:id" element={<Boat/>}/>
           </Routes>
         </div>
 

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 
 import UserService from "../services/user.service";
 import EventBus from "../common/EventBus";
+import authService from '../services/auth.service';
 
-export default class BoardAdmin extends Component {
+export default class User extends Component {
   constructor(props) {
     super(props);
 
@@ -13,7 +14,12 @@ export default class BoardAdmin extends Component {
   }
 
   componentDidMount() {
-    UserService.getAdminBoard().then(
+    const token = authService.getToken();
+    if (!token) {
+      console.log("No token found, redirecting to login...");
+      window.location.href = '/login';
+    }
+    UserService.getUserBoard().then(
       response => {
         this.setState({
           content: response.data
